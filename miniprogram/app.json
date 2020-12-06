@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/weibo/weibo",
+    "pages/weibo/hotCards/hotCards",
+    "pages/weibo/cardDetail/cardDetail",
+    "pages/weibo/topicList/topicList",
+
+    "pages/zhihu/zhihu",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/index/index"
+  ],
+  "entryPagePath": "pages/weibo/weibo",
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#0084ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/weibo/weibo",
+        "text": "微博",
+        "iconPath": "images/weibo.png",
+        "selectedIconPath": "images/weibo_active.png"
+      },
+      {
+        "pagePath": "pages/zhihu/zhihu",
+        "text": "知乎",
+        "iconPath": "images/zhihu.png",
+        "selectedIconPath": "images/zhihu_active.png"
+      },
+      {
+        "pagePath": "pages/openapi/openapi",
+        "text": "雪球",
+        "iconPath": "images/xueqiu.png",
+        "selectedIconPath": "images/xueqiu_active.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#f6f6f6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "综合热榜",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

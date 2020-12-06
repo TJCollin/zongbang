@@ -1,0 +1,144 @@
+<!--pages/hotCards/hotCards.wxml-->
+<view class="card">
+  <view class="hot-header">
+    <view class="header-info">
+      <view class="header-image">
+        <image src="{{cardlistInfo.picUrl}}"></image>
+      </view>
+      <view class="header-desc">
+        <h1 class="title">{{cardlistInfo.title}}</h1>
+        <h4 class="desc">{{cardlistInfo.midText}}</h4>
+        <h4 class="desc">{{cardlistInfo.downText}}</h4>
+      </view>
+    </view>
+    <view class="header-lead" wx:if="{{cardlistInfo.desc}}">
+      导语：{{cardlistInfo.desc}}
+    </view>
+  </view>
+</view>
+
+<block wx:for="{{cards}}" wx:key="unique" wx:for-index="cardIndex">
+  <!-- 微博卡片，每个卡片里一条微博 -->
+  <view class="card">
+    <view class="card-wrap">
+      <view class="card-title" wx:if="{{item.label}}">
+        <h4>{{item.label}}</h4>
+      </view>
+      <view bindtap="cardTap" data-cardIndex="{{cardIndex}}" data-retweet="{{false}}">
+        <view class="wb-avatar">
+          <view class="avatar">
+            <image src="{{item.avatarPic}}"></image>
+          </view>
+          <view class="person-info">
+            <h4 class="name">{{item.name}}</h4>
+            <view>
+              <span class="detail">{{item.createTime}} </span>
+              <span class="detail" wx:if="{{item.source !== '' }}">来自 {{item.source}}</span>
+            </view>
+          </view>
+        </view>
+        <!-- 微博文字内容 -->
+        <view class="text-wrapper">
+          <rich-text nodes="{{item.text}}"></rich-text>
+        </view>
+      </view>
+      <!-- 微博图片内容 -->
+      <ul class="pics-wrapper" wx:if="{{item.pics.length}}">
+        <block wx:for="{{item.pics}}" wx:for-item="pic" wx:for-index="picIndex" wx:key="unique">
+          <li class="pic-item {{item.picClass}}">
+            <view class="img-box" style="background-image:url({{pic}})" catchtap="previewImage" data-src="{{pic}}"
+              data-cardIndex="{{cardIndex}}">
+            </view>
+          </li>
+
+        </block>
+      </ul>
+      <!-- 微博视频内容 -->
+      <view class="video-wrapper" wx:if="{{item.mediaUrl}}">
+        <view class="video-box">
+          <view class="box-container">
+            <!-- 视频展示图片 -->
+            <view class="img-box" style="background-image:url({{item.mediaPicUrl}})" wx:if="{{!item.played}}"
+              data-mediaUrl="{{item.mediaUrl}}" catchtap="playVideo" data-cardIndex="{{cardIndex}}" data-retweet="{{false}}">
+              <!-- 播放按钮 -->
+              <button>
+                <i class="iconfont icon-bofang"></i>
+              </button>
+            </view>
+
+            <!-- 视频播放器 -->
+            <view class="img-box" wx:if="{{item.played}}">
+              <video style="width: 100%;height: 100%" src="{{item.mediaUrl}}" object-fit="contain"
+                id="{{'video'+cardIndex}}"></video>
+            </view>
+
+          </view>
+
+        </view>
+      </view>
+
+      <!-- 转发微博内容 -->
+      <view class="retweet-card" wx:if="{{item.retweetCard}}">
+        <view class="card">
+          <view class="card-wrap">
+            <view catchtap="cardTap" data-cardIndex="{{cardIndex}}" data-retweet="{{true}}">
+              <!-- 微博文字内容 -->
+              <view class="text-wrapper">
+                <rich-text nodes="{{item.retweetCard.text}}"></rich-text>
+              </view>
+            </view>
+            <!-- 微博图片内容 -->
+            <ul class="pics-wrapper" wx:if="{{item.retweetCard.pics.length}}">
+              <block wx:for="{{item.retweetCard.pics}}" wx:for-item="rpic" wx:key="unique">
+                <li class="pic-item {{item.retweetCard.picClass}}">
+                  <view class="img-box" style="background-image:url({{rpic}})">
+                  </view>
+                </li>
+              </block>
+            </ul>
+            <!-- 微博视频内容 -->
+            <view class="video-wrapper" wx:if="{{item.retweetCard.mediaUrl}}">
+              <view class="video-box">
+                <view class="box-container">
+                  <!-- 视频展示图片 -->
+                  <view class="img-box" style="background-image:url({{item.retweetCard.mediaPicUrl}})" data-retweet="{{true}}" catchtap="playVideo" data-cardIndex="{{cardIndex}}" wx:if="{{!item.retweetCard.played}}">
+                    <!-- 播放按钮 -->
+                    <button>
+                      <i class="iconfont icon-bofang"></i>
+                    </button>
+                  </view>
+
+                  <!-- 视频播放器 -->
+                  <view class="img-box" wx:if="{{item.retweetCard.played}}">
+                    <video style="width: 100%;height: 100%" src="{{item.retweetCard.mediaUrl}}" object-fit="contain"
+                      id="{{'rvideo'+cardIndex}}"></video>
+                  </view>
+
+                </view>
+              </view>
+            </view>
+
+          </view>
+
+        </view>
+      </view>
+
+    </view>
+    <view class="card-footer">
+      <view class="footer-item">
+        <i class="iconfont icon-zhuanfa"></i>
+        <span>{{item.repostsCount}}</span>
+      </view>
+      <span class="line-gradient"></span>
+      <view class="footer-item">
+        <i class="iconfont icon-pinglun"></i>
+        <span>{{item.commentsCount}}</span>
+      </view>
+      <span class="line-gradient"></span>
+      <view class="footer-item">
+        <i class="iconfont icon-dianzan"></i>
+        <span>{{item.attitudesCount}}</span>
+      </view>
+    </view>
+  </view>
+</block>

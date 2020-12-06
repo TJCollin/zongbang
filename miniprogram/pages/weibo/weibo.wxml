@@ -1,0 +1,47 @@
+<!--miniprogram/pages/weibo/weibo.wxml-->
+<view class="weibo-wrapper">
+  <view class="tab-wrapper">
+    <view class="nav-tab">
+      <button class="tab-item" hover-class="none" data-index="0" bindtap="changeIndex">热搜榜</button>
+      <button class="tab-item" hover-class="none" data-index="1" bindtap="changeIndex">要闻榜</button>
+      <view class="tab-border {{tabIndex==0?'':'right'}}"></view>
+    </view>
+  </view>
+
+  <swiper current="{{tabIndex}}" class="list-swiper">
+    <swiper-item>
+  
+      <scroll-view scroll-y class="scroll-list" bindrefresherrefresh="onScrollRefresh" refresher-enabled
+        refresher-triggered="{{refreshTriggered}}">
+        <block wx:for="{{searchList}}" wx:key="unique">
+          <navigator class="hot-item" url="./hotCards/hotCards?title={{item.titleText}}">
+            <span class="hot-index">{{index>0?index:''}}<i wx:if="{{index === 0}}"
+                class="iconfont icon-totop"></i></span>
+            <a class="hot-title">
+              {{item.titleText}}
+              <span class="hot-star"> {{item.star}}</span>
+            </a>
+            <span class="hot-icon" wx:if="{{item.hotDes}}">{{item.hotDes}}</span>
+          </navigator>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+  
+    <scroll-view scroll-y class="scroll-list"  refresher-enabled bindrefresherrefresh="onTopicRefresh" refresher-triggered="{{refreshTriggered}}">
+      <block wx:for="{{topicList}}" wx:key="unique">
+        <navigator class="topic-card" url="./hotCards/hotCards?title={{item.title}}">
+          <view class="card-wrap">
+            <view class="img-box" style="background-image:url({{item.img}})"></view>
+            <view class="info-box">
+              <h2 class="title">{{item.title}}</h2>
+              <p class="desc">{{item.desc}}</p>
+              <span class="info">{{item.info}}</span>
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

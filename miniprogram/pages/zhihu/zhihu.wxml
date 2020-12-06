@@ -1,0 +1,13 @@
+<!--pages/zhihu/zhihu.wxml-->
+<view class="type-list">
+  <ul class="btn-list">
+    <block wx:for="{{typeList}}" wx:key="unique">
+      <li class="btn"><span>{{item.label}}</span></li>
+    </block>
+  </ul>
+</view>
+
+<view class="hot-list-wrapper">
+  <ul class="hot-list">
+  </ul>
+</view>

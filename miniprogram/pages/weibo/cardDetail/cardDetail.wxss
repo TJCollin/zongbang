@@ -1,0 +1,276 @@
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 微博卡片 */
+.card {
+  background: #ffffff;
+  margin-bottom: 15rpx;
+  border-top: 1rpx solid #e6e6e6;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.card-wrap {
+  margin: 0 25rpx;
+}
+
+.card-title {
+  line-height: 72rpx;
+  color: #939393;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+/* 微博头像 */
+.wb-avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 32rpx;
+}
+
+.wb-avatar .avatar {
+  height: 84rpx;
+  width: 84rpx;
+}
+
+.wb-avatar .avatar image {
+  height: 82rpx;
+  width: 82rpx;
+  border-radius: 50%;
+
+}
+
+.wb-avatar .person-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25rpx;
+}
+
+.wb-avatar .person-info .name {
+  font-size: 32rpx;
+  color: #F46200;
+}
+
+.wb-avatar .person-info .detail {
+  line-height: 1.5;
+  font-size: 24rpx;
+  color: #939393;
+}
+
+/* 微博内容 */
+.wb-content {
+  padding: 20rpx 0;
+}
+
+/* 微博文字内容 */
+.text-wrapper {
+  line-height: 1.5;
+}
+
+.url-icon {
+  line-height: 1.5;
+  width: 38rpx;
+  height: 38rpx;
+  vertical-align: middle;
+}
+
+.surl-text {
+  color: #3c6e9e;
+}
+
+.blue-text {
+  color: #3c6e9e;
+}
+
+/* 微博图片内容 */
+.pics-wrapper {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.pics-wrapper .pic-item {
+  position: relative;
+  box-sizing: border-box;
+  flex: 0 0 33.3%;
+  margin: 0 10rpx 10rpx 0;
+}
+
+.pic-item.over-four {
+  margin-right: 0;
+  padding: 0 4rpx;
+}
+
+.pics-wrapper .pic-item .img-box {
+  padding-bottom: 100%;
+  background-position: 50%;
+  overflow: hidden;
+  background-size: 100%;
+}
+
+.pics-wrapper .pic-item image {
+  position: absolute;
+  object-fit: cover;
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* 微博视频内容 */
+.video-wrapper {
+  width: 100%;
+  margin-top: 20rpx;
+
+}
+
+.video-wrapper .video-box {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.video-wrapper .video-box .box-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-wrapper .video-box .box-container .img-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-position: 50%;
+  overflow: hidden;
+  background-size: 100%;
+}
+
+.video-wrapper .video-box .box-container button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 108rpx;
+  height: 108rpx;
+  background: rgba(0, 0, 0, .4);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.video-wrapper .video-box .box-container button i {
+  display: block;
+  font-size: 44rpx;
+}
+
+/* 底部转发组 */
+.card-footer {
+  display: flex;
+  height: 64rpx;
+  align-items: center;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.card-footer .footer-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #939393;
+}
+
+.card-footer .footer-item i {
+  font-size: 36rpx;
+}
+
+.card-footer .footer-item span {
+  padding-left: 8rpx;
+  font-size: 27rpx;
+}
+
+.card-footer .line-gradient {
+  height: 36rpx;
+  width: 2rpx;
+  background-color: #e6e6e6;
+}
+
+/* 评论部分 */
+.comment-wrapper {
+  background: #ffffff;
+}
+
+.comment-card {
+  display: flex;
+  padding: 25rpx 0 0 0;
+  margin: 0 25rpx;
+}
+
+.comment-card .avatar {
+  flex-shrink: 0;
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 18rpx;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.comment-card .info {
+  border-bottom: 1rpx solid #e6e6e6;
+  padding-bottom: 25rpx;
+  flex-grow: 1;
+}
+
+.comment-card .info .name {
+  list-style: 1.5;
+  font-size: .875rem;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.comment-card .info .comment-content {
+  line-height: 1.4;
+  color: #333333;
+}
+
+.comment-card .info .time {
+  color: #999999;
+  margin-top: 0.5rem;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-card .info .time .attitude i {
+  padding-right: 10rpx;
+}
+
+/* 转发微博内容 */
+.retweet-card {
+  background-color: #f7f7f7;
+  
+}
+.retweet-card .card{
+  background-color: #f7f7f7;
+  border-top: none;
+  padding-top: 15rpx;
+  margin-top: 10rpx;
+}

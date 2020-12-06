@@ -1,0 +1,21 @@
+/* pages/zhihu/zhihu.wxss */
+.type-list {
+  border-top: 2rpx solid #ebebeb;
+  padding: 24rpx 32rpx;
+}
+
+.type-list .btn-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.type-list .btn-list .btn {
+  background-color: #f6f6f6;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 32rpx;
+  border-radius: 8rpx;
+  color: #808080;
+}
