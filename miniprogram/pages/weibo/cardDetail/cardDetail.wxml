@@ -103,7 +103,6 @@
 
   </view>
 </view>
-
 <view class="comment-wrapper">
   <view class="card-footer">
     <view class="footer-item">
@@ -121,6 +120,8 @@
       <span>{{card.attitudesCount}}</span>
     </view>
   </view>
+  <mp-loading type="dot-gray" ext-class="loading"  show="{{hotFlow.length === 0}}"></mp-loading>
+
   <block wx:for="{{hotFlow}}" wx:key="unique">
     <view class="comment-card">
       <view class="avatar">

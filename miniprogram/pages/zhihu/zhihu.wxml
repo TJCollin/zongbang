@@ -1,13 +1,37 @@
 <!--pages/zhihu/zhihu.wxml-->
-<view class="type-list">
-  <ul class="btn-list">
-    <block wx:for="{{typeList}}" wx:key="unique">
-      <li class="btn"><span>{{item.label}}</span></li>
-    </block>
-  </ul>
-</view>
 
-<view class="hot-list-wrapper">
-  <ul class="hot-list">
-  </ul>
+<view class="zhihu-wrapper">
+  <view class="type-list">
+    <ul class="btn-list">
+      <block wx:for="{{typeList}}" wx:key="unique">
+        <li class="btn {{type === item.val?'active':''}}" bindtap="typeTap" data-type="{{item.val}}">
+          <span>{{item.label}}</span></li>
+      </block>
+    </ul>
+  </view>
+
+  <view class="scroll-wrapper">
+ 
+    <scroll-view scroll-y class="hot-list-wrapper">
+      <view class="hot-list">
+        <mp-loading type="dot-gray" ext-class="loading" show="{{list.length === 0}}"></mp-loading>
+        <block wx:for="{{list}}" wx:key="unique">
+          <navigator class="list-item"
+            url="./question/questionDetail?id={{item.target.id}}&title={{item.target.title}}">
+            <view class="index-box {{index > 2 ? '' : 'hot'}}">{{index+1}}</view>
+            <view class="hot-main">
+              <view class="hot-content">
+                <h2>{{item.target.title}}</h2>
+                <span>{{item.detail_text}}</span>
+              </view>
+              <view class="img-box" wx:if="{{item.children && item.children.length > 0 && item.children[0].thumbnail}}"
+                style="background-image:url({{item.children[0].thumbnail}})"></view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+
+
 </view>

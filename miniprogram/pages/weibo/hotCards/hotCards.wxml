@@ -1,11 +1,14 @@
 <!--pages/hotCards/hotCards.wxml-->
 <view class="card">
+  <!-- 话题详情 -->
   <view class="hot-header">
     <view class="header-info">
+      <!-- 话题图片 -->
       <view class="header-image">
         <image src="{{cardlistInfo.picUrl}}"></image>
       </view>
       <view class="header-desc">
+        <!-- 话题、话题阅读量、话题主持人 -->
         <h1 class="title">{{cardlistInfo.title}}</h1>
         <h4 class="desc">{{cardlistInfo.midText}}</h4>
         <h4 class="desc">{{cardlistInfo.downText}}</h4>
@@ -16,19 +19,23 @@
     </view>
   </view>
 </view>
-
 <block wx:for="{{cards}}" wx:key="unique" wx:for-index="cardIndex">
   <!-- 微博卡片，每个卡片里一条微博 -->
   <view class="card">
     <view class="card-wrap">
+      <!-- 微博头部 -->
       <view class="card-title" wx:if="{{item.label}}">
         <h4>{{item.label}}</h4>
       </view>
+      <!-- 微博主体 -->
       <view bindtap="cardTap" data-cardIndex="{{cardIndex}}" data-retweet="{{false}}">
+        <!-- 微博头像 -->
         <view class="wb-avatar">
+          <!-- 头像图片 -->
           <view class="avatar">
             <image src="{{item.avatarPic}}"></image>
           </view>
+          <!-- 个人信息 -->
           <view class="person-info">
             <h4 class="name">{{item.name}}</h4>
             <view>
@@ -46,8 +53,8 @@
       <ul class="pics-wrapper" wx:if="{{item.pics.length}}">
         <block wx:for="{{item.pics}}" wx:for-item="pic" wx:for-index="picIndex" wx:key="unique">
           <li class="pic-item {{item.picClass}}">
-            <view class="img-box" style="background-image:url({{pic}})" catchtap="previewImage" data-src="{{pic}}"
-              data-cardIndex="{{cardIndex}}">
+            <view class="img-box" catchtap="previewImage" data-src="{{pic}}" data-cardIndex="{{cardIndex}}">
+              <image lazy-load mode="aspectFill" src="{{pic}}"></image>
             </view>
           </li>
 
@@ -59,7 +66,8 @@
           <view class="box-container">
             <!-- 视频展示图片 -->
             <view class="img-box" style="background-image:url({{item.mediaPicUrl}})" wx:if="{{!item.played}}"
-              data-mediaUrl="{{item.mediaUrl}}" catchtap="playVideo" data-cardIndex="{{cardIndex}}" data-retweet="{{false}}">
+              data-mediaUrl="{{item.mediaUrl}}" catchtap="playVideo" data-cardIndex="{{cardIndex}}"
+              data-retweet="{{false}}">
               <!-- 播放按钮 -->
               <button>
                 <i class="iconfont icon-bofang"></i>
@@ -76,7 +84,6 @@
 
         </view>
       </view>
-
       <!-- 转发微博内容 -->
       <view class="retweet-card" wx:if="{{item.retweetCard}}">
         <view class="card">
@@ -101,7 +108,9 @@
               <view class="video-box">
                 <view class="box-container">
                   <!-- 视频展示图片 -->
-                  <view class="img-box" style="background-image:url({{item.retweetCard.mediaPicUrl}})" data-retweet="{{true}}" catchtap="playVideo" data-cardIndex="{{cardIndex}}" wx:if="{{!item.retweetCard.played}}">
+                  <view class="img-box" style="background-image:url({{item.retweetCard.mediaPicUrl}})"
+                    data-retweet="{{true}}" catchtap="playVideo" data-cardIndex="{{cardIndex}}"
+                    wx:if="{{!item.retweetCard.played}}">
                     <!-- 播放按钮 -->
                     <button>
                       <i class="iconfont icon-bofang"></i>
@@ -122,8 +131,8 @@
 
         </view>
       </view>
-
     </view>
+    <!-- 评论转发信息 -->
     <view class="card-footer">
       <view class="footer-item">
         <i class="iconfont icon-zhuanfa"></i>
@@ -142,3 +151,4 @@
     </view>
   </view>
 </block>
+<mp-loading type="dot-gray" ext-class="loading"></mp-loading>

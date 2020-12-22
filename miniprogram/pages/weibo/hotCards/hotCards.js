@@ -1,4 +1,5 @@
 // pages/hotCards/hotCards.js
+
 import {
   WEIBO
 } from "../../../config/urlConfig"
@@ -35,47 +36,43 @@ Page({
       title = `#${title}#`
     }
     console.log('title', title, page)
-    let promise = new Promise((resolve, reject) => {
-      wx.cloud.callFunction({
-        name: 'getItemCards',
-        data: {
-          url: WEIBO.itemCards,
-          keyword: title,
-          page: page
+    let containerId = encodeURIComponent(`231522type=1&q=${title}`);
+    return requestPromise({
+      url: WEIBO.itemCards,
+      data: {
+        containerid: containerId,
+        page_type: "searchall",
+        page: page,
+      }
+    }).then((res) => {
+      console.log('获取热搜详情成功', res)
+      let cards = []
+      let cardListInfo = {}
+      let data = res.data
+      cards = this.handleCards(data.cards)
+      console.log('handle', cards)
+      if (page > 1) {
+        const originCards = this.data.cards
+        cards = originCards.concat(cards)
+        this.setData({
+          cards,
+        })
+      } else {
+        cardListInfo = {
+          picUrl: data.cardlistInfo.cardlist_head_cards[0].head_data.portrait_url,
+          title: data.cardlistInfo.cardlist_head_cards[0].head_data.title,
+          midText: data.cardlistInfo.cardlist_head_cards[0].head_data.midtext,
+          downText: data.cardlistInfo.cardlist_head_cards[0].head_data.downtext,
+          desc: data.cardlistInfo.cardlist_head_cards[0].head_data.desc,
         }
-      }).then(res => {
-        console.log('获取热搜详情成功', res.result)
-        let cards = []
-        let cardListInfo = {}
-        let data = res.result.hotCardsInfo.data
-        cards = this.handleCards(data.cards)
-        if (page > 1) {
-          const originCards = this.data.cards
-          cards = originCards.concat(cards)
-          this.setData({
-            cards,
-          })
-        } else {
-          cardListInfo = {
-            picUrl: data.cardlistInfo.cardlist_head_cards[0].head_data.portrait_url,
-            title: data.cardlistInfo.cardlist_head_cards[0].head_data.title,
-            midText: data.cardlistInfo.cardlist_head_cards[0].head_data.midtext,
-            downText: data.cardlistInfo.cardlist_head_cards[0].head_data.downtext,
-            desc: data.cardlistInfo.cardlist_head_cards[0].head_data.desc,
-          }
-          this.setData({
-            cardlistInfo: cardListInfo,
-            cards: cards,
-          })
-        }
-        resolve('获取热搜详情成功')
-      }).catch(err => {
-        console.log("获取热搜详情失败：", err)
-        reject('获取热搜详情失败')
-      })
-
+        this.setData({
+          cardlistInfo: cardListInfo,
+          cards: cards,
+        })
+      }
+    }).catch((err) => {
+      console.log("获取热搜详情失败：", err)
     })
-    return promise
 
   },
 
@@ -157,7 +154,10 @@ Page({
       card = card.retweetCard
     }
     requestPromise({
-      url: `${WEIBO.cardExtend}/${card.id}`
+      url: `${WEIBO.cardExtend}`,
+      data: {
+        id: card.id
+      }
     }).then(res => {
       console.log('获取长文成功', res)
       let reg = /<a /g
@@ -178,7 +178,7 @@ Page({
     console.log('played')
     const cardIndex = e.currentTarget.dataset.cardindex
     const retweet = e.currentTarget.dataset.retweet
-    console.log('re',retweet)
+    console.log('re', retweet)
     let playedCard = `cards[${cardIndex}].played`
     let videoContext = wx.createVideoContext(`video${cardIndex}`, this)
     if (retweet) {
@@ -237,7 +237,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('pullDown')
     this.setData({
       page: 1
     })
@@ -245,6 +244,11 @@ Page({
       (res) => {
         wx.stopPullDownRefresh({
           success: (res) => {
+            wx.showToast({
+              title: '刷新成功',
+              icon: 'success',
+              duration: 500
+            })
             console.log("刷新成功")
           },
         })

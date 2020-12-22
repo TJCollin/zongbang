@@ -3,9 +3,11 @@
     "pages/weibo/weibo",
     "pages/weibo/hotCards/hotCards",
     "pages/weibo/cardDetail/cardDetail",
-    "pages/weibo/topicList/topicList",
-
     "pages/zhihu/zhihu",
+    "pages/zhihu/question/questionDetail",
+    "pages/zhihu/answer/answerDetail",
+    "pages/xueqiu/xueqiu",
+
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -35,7 +37,7 @@
         "selectedIconPath": "images/zhihu_active.png"
       },
       {
-        "pagePath": "pages/openapi/openapi",
+        "pagePath": "pages/xueqiu/xueqiu",
         "text": "雪球",
         "iconPath": "images/xueqiu.png",
         "selectedIconPath": "images/xueqiu_active.png"
@@ -48,6 +50,9 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "综合热榜",
     "navigationBarTextStyle": "black"
+  },
+  "useExtendedLib": {
+    "weui": true
   },
   "sitemapLocation": "sitemap.json"
 }

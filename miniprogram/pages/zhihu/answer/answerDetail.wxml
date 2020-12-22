@@ -1,0 +1,104 @@
+<!--pages/zhihu/answer/answerDetail.wxml-->
+<view class="title">{{answer.question.title}}</view>
+<import src="../../../wxParse/wxParse.wxml" />
+
+<view class="card">
+  <view class="avatar">
+    <image class="pic" src="{{answer.author.avatar_url}}"></image>
+    <span class="name">{{answer.author.name}}</span>
+  </view>
+  <view class="content">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+  <view class="detail">
+    <span>{{answer.voteup_count}} 赞同</span>
+    <span> · </span>
+    <span>{{answer.comment_count}} 评论</span>
+    <span> · </span>
+    <span>{{answer.created_time}}</span>
+  </view>
+
+</view>
+
+<view class="comment-wrapper">
+  <view wx:if="{{featuredComments.length}}">
+    <p class="comment-title">精选评论（{{featuredComments.length}}）</p>
+    <view class="card-list">
+      <block wx:for="{{featuredComments}}" wx:key="unique">
+        <view class="comment-card">
+          <view class="avatar">
+            <image src="{{item.author.member.avatar_url}}"></image>
+          </view>
+          <view class="info">
+            <view class="name">
+              {{item.author.member.name}}
+              <block wx:if="{{item.reply_to_author}}">
+                <i class="iconfont icon-reply"></i>
+                {{item.reply_to_author.member.name}}
+              </block>
+
+            </view>
+            <view class="comment-content">
+              <rich-text nodes="{{item.content}}"></rich-text>
+            </view>
+            <view class="time">
+              <span>{{item.created}}</span>
+              <span class="attitude"><i class="iconfont icon-dianzan"></i>{{item.vote_count}}</span>
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+  <view>
+    <p class="comment-title">评论（{{answer.comment_count}}）</p>
+    <view class="card-list">
+      <block wx:for="{{comments}}" wx:key="unique">
+        <view class="comment-card">
+          <view class="avatar">
+            <image src="{{item.author.member.avatar_url}}"></image>
+          </view>
+          <view class="info">
+            <view class="name">
+              {{item.author.member.name}}
+
+              <i class="iconfont icon-dianzan"></i>
+            </view>
+            <view class="comment-content">
+              <rich-text nodes="{{item.content}}"></rich-text>
+            </view>
+            <view class="time">
+              <span>{{item.created}}</span>
+              <span class="attitude"><i class="iconfont icon-dianzan"></i>{{item.vote_count}}</span>
+            </view>
+          </view>
+        </view>
+        <block wx:for="{{item.child_comments}}" wx:for-item="child">
+          <view class="comment-card child">
+            <view class="avatar">
+              <image src="{{child.author.member.avatar_url}}"></image>
+            </view>
+            <view class="info">
+              <view class="name">
+                {{child.author.member.name}}
+                <block wx:if="{{child.reply_to_author}}">
+                  <i class="iconfont icon-reply"></i>
+                  {{child.reply_to_author.member.name}}
+                </block>
+
+              </view>
+              <view class="comment-content">
+                <rich-text nodes="{{child.content}}"></rich-text>
+              </view>
+              <view class="time">
+                <span>{{child.created}}</span>
+                <span class="attitude"><i class="iconfont icon-dianzan"></i>{{child.vote_count}}</span>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>

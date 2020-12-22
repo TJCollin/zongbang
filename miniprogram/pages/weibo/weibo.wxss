@@ -7,6 +7,10 @@
   height: 100%;
 }
 
+.loading {
+  margin: 20rpx 0;
+}
+
 .tab-wrapper {
   border-bottom: 2rpx solid #eeeeee;
   display: flex;
@@ -62,12 +66,7 @@
   justify-content: space-between;
 }
 .hot-index {
-  font-style: italic;
-  color: #f26d5f;
-  padding-right: 20rpx;
-  box-sizing: border-box;
-  display: block;
-  font-size: 25rpx;
+  height: 50rpx;
   width: 50rpx;
 }
 .hot-title{
@@ -79,12 +78,8 @@
   -o-text-overflow: ellipsis;
 }
 .hot-icon{
-  display: block;
-  font-size: 22rpx;
-  padding: 5rpx;
-  background-color: #ff3852;
-  color: white;
-  border-radius: 5rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .hot-star{
   padding-left: 30rpx;
@@ -107,8 +102,8 @@
   align-items: center;
 }
 .topic-card .card-wrap .img-box {
-  width: 140rpx ;
-  height: 140rpx;
+  width: 110rpx ;
+  height: 110rpx;
   flex-shrink: 0;
   background-position: 50%;
   overflow: hidden;

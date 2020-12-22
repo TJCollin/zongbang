@@ -19,14 +19,14 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "bundle": false
+    "minifyWXSS": true
   },
   "appid": "wxe6b16ce3a821d5f7",
   "projectname": "zongbang",
@@ -61,6 +61,18 @@
         {
           "name": "pages/zhihu/zhihu",
           "pathName": "pages/zhihu/zhihu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/zhihu/question/questionDetail",
+          "pathName": "pages/zhihu/question/questionDetail",
+          "query": "id= 340318133&title= 领导微信发“辛苦了”，作为员工应该怎么回答？",
+          "scene": null
+        },
+        {
+          "name": "pages/xueqiu/xueqiu",
+          "pathName": "pages/xueqiu/xueqiu",
           "query": "",
           "scene": null
         }

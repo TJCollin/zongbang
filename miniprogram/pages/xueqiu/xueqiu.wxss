@@ -1,0 +1,105 @@
+/* pages/xueqiu/xueqiu.wxss */
+page {
+  background: #f6f6f6;
+}
+.xueqiu-wrapper .index-wrapper {
+  padding: 24rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.index-wrapper .index-block {
+  padding: 0 30rpx;
+  height: 150rpx;
+  background-color: #fff;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.index-block .index{
+  color: #d20;
+  font-weight: 700;
+  font-size: 40rpx;
+}
+.index-block .detail {
+  font-size: 24rpx;
+  color: #d20;
+}
+.index-block .index.down,.detail.down {
+  color: #093;
+}
+.xueqiu-wrapper .date {
+  padding: 24rpx 32rpx;
+  border-bottom: 2rpx solid #e6e6e6;
+  background-color: #fff;
+}
+
+.date .day {
+  color: #f70;
+  font-size: 60rpx;
+  vertical-align: -6rpx;
+}
+.date .month {
+  padding-left: 10rpx;
+}
+
+.xueqiu-wrapper .timeline-wrapper {
+  background-color: #fff;
+  padding: 24rpx 32rpx;
+}
+
+.timeline-card {
+  display: flex;
+}
+
+.timeline-card.mark .time{
+  color: #f70;
+}
+
+.timeline-card.mark .vertical-line .dot{
+  background-color: #f70;
+}
+
+.timeline-card.mark .content {
+  color: #f70;
+}
+
+.vertical-line{
+  width: 60rpx;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.vertical-line .dot-box {
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  padding: 0 10rpx;
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dot  {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #edf0f5;
+  border-radius: 50%;
+}
+
+.vertical-line .line {
+  width: 10rpx;
+  height: 100%;
+  background-color: #edf0f5;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+.loading {
+  margin: 20rpx 0;
+}
+.timeline-card .content {
+  padding-bottom: 60rpx;
+}

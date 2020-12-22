@@ -6,18 +6,39 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "6180943",
-      "name": "评论",
-      "font_class": "pinglun",
-      "unicode": "e65a",
-      "unicode_decimal": 58970
+      "icon_id": "14478175",
+      "name": "右",
+      "font_class": "you1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
     },
     {
-      "icon_id": "1159365",
+      "icon_id": "14402300",
+      "name": "右",
+      "font_class": "zu2617",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "14360039",
+      "name": "置顶",
+      "font_class": "zhiding",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "10140967",
+      "name": "评论",
+      "font_class": "pinglun3",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "6956965",
       "name": "转发",
-      "font_class": "zhuanfa",
-      "unicode": "e61e",
-      "unicode_decimal": 58910
+      "font_class": "zhuanfa2",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     },
     {
       "icon_id": "17979453",

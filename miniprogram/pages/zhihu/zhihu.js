@@ -1,5 +1,5 @@
 // pages/zhihu/zhihu.js
-import {requestPromise} from '../../utils/requestPromise';
+import requestPromise from '../../utils/requestPromise';
 import {ZHIHU} from '../../config/urlConfig';
 Page({
 
@@ -31,7 +31,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    requestPromise({url: ''})
+    wx.setNavigationBarTitle({
+      title: '知乎热榜',
+    })
+    this.getHotData()
+  },
+
+  typeTap: function (e) {
+    const type = e.currentTarget.dataset.type
+    this.setData({type: type},()=>{
+      this.getHotData()
+    })
+  },
+  getHotData: function () {
+    requestPromise({url: `https://www.zhihu.com/api/v3/feed/topstory/hot-lists/${this.data.type}?limit=50&desktop=true`}).then((res)=>{
+      console.log('获取知乎热搜数据成功：', res)
+      this.setData({
+        list: res.data
+      })
+    }).catch((err)=>{
+      console.log('获取热搜数据失败：', err)
+    })
   },
 
   /**

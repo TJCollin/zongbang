@@ -1,12 +1,33 @@
-# 云开发 quickstart
+<!--
+ * @Author: Collin
+ * @Date: 2020-11-03 20:58:31
+ * @LastEditTime: 2020-12-22 20:51:15
+ * @LastEditors: collin
+ * @Description: https://gitee.com/CollinZhang
+ * @FilePath: \zongbang\README.md
+-->
+# 热榜资讯小程序
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+> 综合微博、知乎和雪球等热榜，在一个小程序中浏览所有热搜信息，不需要切换多个APP。
+>
+> 由于网络安全规定个人不允许上线文娱广场小程序，因此暂无法提供扫码体验。
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+## 内容截图
 
-## 参考文档
+> 以下为gif录屏，更多截图可参考images文件夹中图片
 
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+![录屏gif](images/recorder.gif "热榜资讯")
+
+
+## 技术要点
+
+- 采用原生小程序框架
+- 微博图片自动 9 宫格，4 图时自动转为 2 * 2 排列
+- 可展示引用微博
+- 知乎答案列表显示缩略图
+- 支持下拉刷新
+- 知乎答案通过 wxParse 进行排版
+- 雪球数据自动更新 cookie 爬取
+- ... ...
+
 

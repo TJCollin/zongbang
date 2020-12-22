@@ -9,7 +9,8 @@ Page({
     tabIndex: 0,
     searchList: [],
     refreshTriggered: false,
-    topicList: []
+    topicList: [],
+    showRefreshText: false
   },
 
 
@@ -30,21 +31,10 @@ Page({
       title: '微博热榜',
     })
 
-    this.getHotListData().then(res=>{
-      
-      this.setData({
-        searchList: res
-      })
-    }).catch((err)=>{
-      console.log("获取热搜列表失败：",err)
-    })
-    this.getTopicListData().then(res=>{
-      this.setData({
-        topicList: res
-      })
-    }).catch((err)=>{
-      console.log("获取热搜要闻列表失败：",err)
-    })
+    this.getHotListData()
+    this.getTopicListData()
+ 
+
   },
 
   /**
@@ -54,27 +44,46 @@ Page({
     this.setData({
       refreshTriggered: true
     })
-    this.getHotListData().then(
-      (res)=>{
-        this.setData({
-          refreshTriggered: false
-        })
-      }
-    )
+    this.getHotListData().then(()=>{
+      this.setData({
+        refreshTriggered: false,
+      })
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success',
+        duration: 500
+      })
+    })
  
   },
 
   getTopicListData: function () {
-    return requestPromise({url: WEIBO.topicList})
+    return requestPromise({url: `${WEIBO.topicList}`}).then(
+      (res)=>{
+        if(res.data.cards.length > 0 && res.data.cards[0].card_group.length > 0){
+          this.setData({
+            topicList: res.data.cards[0].card_group
+          })
+        }
+      }
+    ).catch((err)=>{
+      console.log("获取热搜要闻列表失败：",err)
+    })
   },
   onTopicRefresh: function (params) {
-    this.getTopicListData().then(
-      (res)=>{
-        this.setData({
-          refreshTriggered: false
-        })
-      }
-    )
+    this.setData({
+      refreshTriggered: true
+    })
+    this.getTopicListData().then(()=>{
+      this.setData({
+        refreshTriggered: false
+      })
+    })
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success',
+      duration: 500
+    })
  
   },
   /**
@@ -82,7 +91,15 @@ Page({
    */
   getHotListData: function () {
     return requestPromise({
-      url: WEIBO.hotList
+      url: `${WEIBO.hotList}`
+    }).then(res=>{
+      if(res.data.cards.length > 0 && res.data.cards[0].card_group.length > 0){
+        this.setData({
+          searchList: res.data.cards[0].card_group
+        })
+      }
+    }).catch((err)=>{
+      console.log("获取热搜列表失败：",err)
     })
   },
 

@@ -2,8 +2,10 @@
 import {
   timeFormat
 } from '../../../utils/timeFormat'
-
-import {WEIBO} from "../../../config/urlConfig"
+import requestPromise from '../../../utils/requestPromise'
+import {
+  WEIBO
+} from "../../../config/urlConfig"
 
 Page({
 
@@ -13,7 +15,7 @@ Page({
   data: {
     card: {},
     hotFlow: [],
-    page:1
+    page: 1
   },
 
   /**
@@ -32,21 +34,25 @@ Page({
   },
 
   getHotComments: function () {
-    wx.request({
-      url: `${WEIBO.hotComments}/${this.data.card.id}/${this.data.card.mid}`,
-      success: (result) => {
-        console.log('获取评论成功：', result)
-        let resData = result.data.data.data
-        resData.forEach(flow => {
-          flow.created_at = timeFormat(flow.created_at)
-        })
-        this.setData({
-          hotFlow: resData
-        })
-      },
-      fail: (res) => {
-        console.log("获取评论失败：", res)
+    requestPromise({
+      url: `${WEIBO.hotComments}`,
+      data: {
+        id: this.data.card.id,
+        mid: this.data.card.mid
       }
+    }).then(res => {
+      console.log('获取评论成功：', res)
+      let resData = res.data.data
+      resData.forEach(flow => {
+        flow.created_at = timeFormat(flow.created_at)
+      })
+      this.setData({
+        hotFlow: resData
+      })
+
+    }).catch((err) => {
+      console.log("获取评论失败：", err)
+
     })
 
   },

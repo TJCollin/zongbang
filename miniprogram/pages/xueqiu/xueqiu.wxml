@@ -1,0 +1,34 @@
+<view class="xueqiu-wrapper">
+  <view class="index-wrapper">
+    
+    <block wx:for="{{indexes}}" wx:key="unique">
+      <view class="index-block">
+        <p class="title">{{item.title}}</p>
+        <p class="index {{item.chg > 0? '': 'down' }}">{{item.current}}</p>
+        <p class="detail {{item.chg > 0? '': 'down' }}"><span>{{item.chg}} </span><span>{{item.percent}}%</span></p>
+      </view>
+    </block>
+  </view>
+  <view class="date">
+    <span class="day">{{day}}</span><span class="month">{{month}}</span>
+  </view>
+  <view class="timeline-wrapper">
+    <block wx:for="{{list}}" wx:key="unique">
+      <view class="timeline-card {{item.mark?'mark':''}}">
+      <span class="time">
+        {{item.time}}
+      </span>
+      <view class="vertical-line">
+        <view class="dot-box">
+          <view class="dot"></view>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view class="content">
+        {{item.text}}
+      </view>
+    </view>
+    </block>
+    <mp-loading type="dot-gray" ext-class="loading" show="{{loading}}"></mp-loading>
+  </view>
+</view>

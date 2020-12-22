@@ -1,0 +1,122 @@
+/* pages/zhihu/answer/answerDetail.wxss */
+@import "../../..//wxParse/wxParse.wxss";
+
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.wxParse-div {
+  text-align: center;
+  margin: 24rpx 0;
+}
+
+.title {
+  padding: 24rpx 32rpx;
+  font-weight: 700;
+  font-size: 38rpx;
+  background-color: #fff;
+}
+
+.card {
+  margin-top: 24rpx;
+  padding: 0 32rpx;
+  background-color: #fff;
+}
+
+.card .avatar {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.card .avatar .pic {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+}
+
+.card .avatar .name {
+  display: flex;
+  margin-left: 16rpx;
+  color: #939393;
+}
+
+
+.card .detail {
+  padding: 24rpx 0;
+  font-size: 28rpx;
+  color: #939393;
+}
+
+/* 评论部分 */
+.comment-wrapper .comment-title {
+  padding: 0 32rpx;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  color: grey;
+}
+
+.card-list {
+  padding: 0 25rpx;
+  background-color: #fff;
+
+}
+.comment-card {
+  display: flex;
+  padding: 25rpx 0 0 0;
+}
+.comment-card.child {
+  padding-left: 64rpx;
+}
+.comment-card .avatar {
+  flex-shrink: 0;
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 18rpx;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.comment-card .info {
+  padding-bottom: 25rpx;
+  flex-grow: 1;
+}
+
+.comment-card .info .name {
+  list-style: 1.5;
+  font-size: .875rem;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.info .name .icon-reply {
+  color: #999999;
+  vertical-align: 4rpx;
+  font-size: xx-small;
+}
+
+.comment-card .info .comment-content {
+  line-height: 1.4;
+  color: #333333;
+}
+
+.comment-card .info .time {
+  color: #999999;
+  margin-top: 0.5rem;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-card .info .time .attitude i {
+  padding-right: 10rpx;
+}

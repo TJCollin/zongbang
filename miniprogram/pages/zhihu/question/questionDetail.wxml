@@ -1,0 +1,35 @@
+<view class="title">{{title}}</view>
+
+
+<view class="card-wrapper">
+  <mp-loading type="dot-gray" ext-class="loading" show="{{answers.length === 0}}"></mp-loading>
+  <block wx:for="{{answers}}" wx:key="unique">
+    <view class="card" bindtap="cardTap" data-cardindex="{{index}}">
+      <view class="avatar">
+        <image class="pic" src="{{item.author.avatar_url}}"></image>
+        <span class="name">{{item.author.name}}</span>
+      </view>
+      <view class="content">
+        <view class="pic-wrapper" wx:if="{{item.pics}}">
+          <block wx:for="{{item.pics}}" wx:key="unique" wx:for-item="pic">
+            <view class="pic-container">
+              <view class="img-box">
+                <image class="img" lazy-load src="{{pic}}" mode="aspectFill"></image>
+              </view>
+            </view>
+          </block>
+        </view>
+        <view class="excerpt">{{item.excerpt}}</view>
+      </view>
+      <view class="detail">
+        <span>{{item.voteup_count}} 赞同</span>
+        <span> · </span>
+        <span>{{item.comment_count}} 评论</span>
+        <span> · </span>
+        <span>{{item.created_time}}</span>
+      </view>
+    </view>
+  </block>
+  <mp-loading type="dot-gray" ext-class="loading" show="{{answers.length > 0}}"></mp-loading>
+
+</view>
